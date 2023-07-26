@@ -27,6 +27,7 @@ function submitHandler(event:Event):void {
     const [todo, setTodo]  =  useState<string>("")
 
     return(
+        <>
         <div id="homepage">
     
        <section className="aside-section">
@@ -63,9 +64,10 @@ function submitHandler(event:Event):void {
 
         </div>
        </section>
-       <TodoListRender todosList={todos} />
         </div>
 
+        <TodoListRender todosList={todos} setTodos={setTodos} />
+        </>
 
       
     )
