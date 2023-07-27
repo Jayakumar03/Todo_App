@@ -22,8 +22,7 @@ function updateTodo(todo) {
     const updatedValue:string = prompt();
 
 
-  // Error after here
-    const updatedTodos = props.todoList.map((item) => {
+    const updatedTodos = props.todosList.map((item) => {
       if (item.id === todo.id) {
         console.log("entering if")
          return { ...item,"task": updatedValue};
@@ -31,7 +30,7 @@ function updateTodo(todo) {
       return item;
     });
 
-    // props.setTodos(updatedTodos);
+    props.setTodos(updatedTodos);
     console.log(updatedTodos)
     
   }
