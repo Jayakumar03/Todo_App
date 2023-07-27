@@ -3,7 +3,13 @@ export const TodoListRender = (props) => {
 
 function deleteTodo(todo) {
     console.log(todo)
-    const updatedTodos = props.todosList.filter((item) =>  { return item.id !== todo.id});
+    const updatedTodos = props.todosList.map((item) =>  { 
+      if(item.id === todo.id){
+        return{ ...item, "completed":true}
+      }
+
+      return item
+    });
     console.log(
     props.setTodos(updatedTodos));
 
@@ -13,17 +19,21 @@ function deleteTodo(todo) {
 
 function updateTodo(todo) {
     console.log(todo);
-    const updatedValue = prompt();
-  
+    const updatedValue:string = prompt();
+
+
+  // Error after here
     const updatedTodos = props.todoList.map((item) => {
-      console.log(item.task);
       if (item.id === todo.id) {
-        return { ...item, task: updatedValue };
+        console.log("entering if")
+         return { ...item,"task": updatedValue};
       }
       return item;
     });
-  
-    props.setTodos(updatedTodos);
+
+    // props.setTodos(updatedTodos);
+    console.log(updatedTodos)
+    
   }
 
     
@@ -32,15 +42,16 @@ function updateTodo(todo) {
       <>
         <ul id="todolist-container">
           {props.todosList.map((todo) => (
-            <li id={todo.id} key={todo.id}  className="indivual-todo">
+          !todo.completed ? 
+           ( <li id={todo.id} key={todo.id}  className="indivual-todo">
               <label htmlFor={`checkbox-${todo.id}`}>
                 <input type="checkbox" id={`checkbox-${todo.id}`} className="checkbox" />
                 {todo.task}
               </label>
               <button onClick={ () => updateTodo(todo)}><i className="fa-solid fa-pen-to-square"></i></button>
               <button onClick={ () => deleteTodo(todo)} ><i className="fa-solid fa-trash"></i></button>
-            </li>
-          ))}
+            </li>) : console.log("TOdo is completed")
+          ))} 
         </ul>
       </>
     );
