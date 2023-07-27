@@ -33,7 +33,7 @@ function submitHandler(event:Event):void {
        <section className="aside-section">
        <AllButton />
        <ActiveButton />
-       <CompletedButton/>
+       <CompletedButton />
        </section>
 
 
